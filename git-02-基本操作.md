@@ -101,10 +101,22 @@ git reset --hard 下一版本(标识)
 git reflog
 ```
 
+##### 13、添加远端仓库
+
+```shell
+git remote add origin(仓库别名) git@github.com:GJBlog/Notes.git(仓库地址)
+```
+
 ##### 13、查看远端仓库地址
 
 ```shell
 git remote -v
+```
+
+##### 14、删除远端库
+
+```shell
+git remote rm origin(仓库别名)
 ```
 
 ##### 13、本地仓库与远端仓库关联
