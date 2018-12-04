@@ -3,13 +3,19 @@
 ##### 1、用户名、邮箱
 
 ```shell
-// 设置
+// 设置部分配置项
 git  config --global user.name "your  name"
 git config --global user.email "your email"
 
-// 查看
-git config user.name
-git config user.email
+// 设置全部配置项
+git config -e
+
+// 查看部分配置项,
+git config (--get) user.name
+git config (--get) user.email
+
+// 查看所有配置项
+git config -l
 
 // 删除
 git config--unset--global user.name

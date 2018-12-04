@@ -170,17 +170,45 @@ git checkout 分支名
 git checkout -b 分支名
 ```
 
+##### 22、拉取远端分支到本地
+
+```shell
+git checkout -b dev(本地分支名) origin/dev(远端分支名)
+```
+
+##### 23、建立本地分支跟远端分支的关联
+
+```shell
+git branch --set-upstream branch-name origin/branch-name
+```
+
+
+##### 22、推送本地分支到远端
+
+```shell
+git push origin(远端主机名) dev(本地分支名):dev(远端分支名)
+git push origin(远端主机名) dev(本地分支名==远端分支名)
+```
+
 ##### 22、查看所有分支
 
 ```shell
-git branch
+远端分支：git branch -a
+本地分支：git branch
 ```
 
-##### 23、删除分支
+##### 23、删除本地分支
 
 ```shell
 git branch (-d)(-D) 分支名
 -D：强行删除
+```
+
+##### 24、删除远端分支
+
+```shell
+git push origin(远端主机名) --delete dev(远端删除分支名)
+git push origin(远端主机名) :dev(远端待分支名)
 ```
 
 ##### 24、默认合并分支
