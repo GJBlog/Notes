@@ -107,25 +107,25 @@ git reflog
 git remote add origin(仓库别名) git@github.com:GJBlog/Notes.git(仓库地址)
 ```
 
-##### 13、查看远端仓库地址
+##### 14、查看远端仓库地址
 
 ```shell
 git remote -v
 ```
 
-##### 14、删除远端库
+##### 15、删除远端库
 
 ```shell
 git remote rm origin(仓库别名)
 ```
 
-##### 13、本地仓库与远端仓库关联
+##### 16、本地仓库与远端仓库关联
 
 ```shell
 git remote add origin git@github.com:GJBlog/LearnGit.git
 ```
 
-##### 15、推送远端仓库
+##### 16、推送远端仓库
 
 ```shell
 git push (-u) origin master
@@ -134,91 +134,91 @@ master：远端仓库分支
 -u：关联本地和远端仓库后第一次推送
 ```
 
-##### 16、切换分支
+##### 17、切换分支
 
 ```shell
 git checkout 待切换分支名
 ```
 
-##### 17、撤销暂存区修改，内容重新放回工作区
+##### 18、撤销暂存区修改，内容重新放回工作区
 
 ```shell
 git reset HEAD 文件名
 ```
 
-##### 18、从版本库中删除文件
+##### 19、从版本库中删除文件
 
 ```shell
 git rm 文件名
 ```
 
-##### 19、创建新分支
+##### 20、创建新分支
 
 ```shell
 git branch 分支名
 ```
 
-##### 20、切换分支
+##### 21、切换分支
 
 ```shell
 git checkout 分支名
 ```
 
-##### 21、创建新分支并切换到当前分支
+##### 22、创建新分支并切换到当前分支
 
 ```shell
 git checkout -b 分支名
 ```
 
-##### 22、拉取远端分支到本地
+##### 23、拉取远端分支到本地
 
 ```shell
 git checkout -b dev(本地分支名) origin/dev(远端分支名)
 ```
 
-##### 23、建立本地分支跟远端分支的关联
+##### 24、建立本地分支跟远端分支的关联
 
 ```shell
 git branch --set-upstream branch-name origin/branch-name
 ```
 
 
-##### 22、推送本地分支到远端
+##### 25、推送本地分支到远端
 
 ```shell
 git push origin(远端主机名) dev(本地分支名):dev(远端分支名)
 git push origin(远端主机名) dev(本地分支名==远端分支名)
 ```
 
-##### 22、查看所有分支
+##### 26、查看所有分支
 
 ```shell
 远端分支：git branch -a
 本地分支：git branch
 ```
 
-##### 23、删除本地分支
+##### 27、删除本地分支
 
 ```shell
 git branch (-d)(-D) 分支名
 -D：强行删除
 ```
 
-##### 24、删除远端分支
+##### 28、删除远端分支
 
 ```shell
 git push origin(远端主机名) --delete dev(远端删除分支名)
 git push origin(远端主机名) :dev(远端待分支名)
 ```
 
-##### 24、默认合并分支
+##### 29、默认合并分支
 
 ```shell
 git merge (--no-ff) dev(分支名)
 合并dev(分支名)到当前分支
 ```
 
-##### 25、禁用Fast forward模式合并分支
+##### 30、禁用Fast forward模式合并分支
 
 --no--ff：表示禁用```Fast forward```模式
 
@@ -261,6 +261,20 @@ git stash drop
 
 git stash clear
 清空整个贮藏列表
+```
+
+##### 29、拉取远端分支
+
+**取回远端主机某个分支的更新，并与本地的对应分支合并**
+
+```shell
+git pull origin(远端主机名) dev(远端分支名):(dev)(本地分支名)
+```
+
+##### 33、抓取远端分支
+
+```shell
+
 ```
 
 
