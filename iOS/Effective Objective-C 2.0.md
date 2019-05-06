@@ -1,26 +1,11 @@
-# Effective Objective-C 2.0
+# Effective Objective-C-2.0
 
-#####一、对象所占内存总是分配在堆空间中(heap space),而不是在栈上(stack)
-#####二、
-* 编译单元内(.m文件)中声明内部使用的常亮时：k+常量名称
+### 一、
+* 1、在Objective-C的语境下，"编译单元"一词通常指每个类的实现文件(以.m为后缀)
+* 2、在C++中，在执行按位或操作时，结果需要显式转换为某个类型，鉴于此，凡是需要按位或操作来组合的枚举都应该使用NS_OPTIONS定义，若枚举不需要互相组合，则应使用NS_ENUM来定义。
+* 3、使用@synthesize指定实例变量的名字
+* 4、使用@dynamic，会告诉编译器，不要自动创建实现属性所用的实例变量，也不要为其创建存取方法
+* 5、
 
-```
-static const NSTimeInterval kAnimationDuration = 0.3;
-```
-
-* 在头文件中声明全局的时：类名+常量名称
-
-```
-//.h
-UIKIT_EXTERN NSString *const ViewControllerConstant;
-//.m
-UIKIT_EXTERN NSString *const ViewControllerConstant = @"VALUE";
-```
-#####三、枚举
-
-######四、
-
-
-#####二十一、
 
 

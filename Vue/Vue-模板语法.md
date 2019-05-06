@@ -63,3 +63,15 @@
     <!--缩写-->
     <div @click="handleDivClick"></div>
     ```
+## javaScript表达式
+
+表达式允许在所属的Vue实例的数据作用域下座位javaScript被解析，但是每个绑定都只能包含单个表达式
+
+```html
+<!-- 这是语句，不是表达式,❌ -->
+{{ var a = 1 }}
+
+<!-- 流控制也不会生效，请使用三元表达式，❌ -->
+{{ if (ok) { return message } }}
+```
+
