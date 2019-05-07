@@ -99,6 +99,14 @@
 * 固体对象
 * 点击事件
 
+### CAShapeLayer
+
+* 是一个通过矢量图形而不是Bitmap来绘制的图层子类
+* 创建CGPath
+
+### CATextLayer
+
+* 
 
 ### 注意点
 
