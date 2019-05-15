@@ -29,7 +29,7 @@
  - frame：图层外部坐标，在父图层中占据的位置和大小
  - bounds： 内部坐标，以自己图层的左上角为0,0
  - center/position：代表相对父图层anchorpoint所在的位置;
- - anchorPoint它决定着CALayer身上的哪个点会在position所指定的位置上。它的x、y取值范围都是0~1，默认值为(0.5, 0.5)默认情况下，CALayer的中点会在position所指定的位置上
+ - anchorPoint：它决定着CALayer身上的哪个点会在position所指定的位置上。它的x、y取值范围都是0~1，默认值为(0.5, 0.5)默认情况下，CALayer的中点会在position所指定的位置上
  - Z坐标轴：```zPosition```、```anchorPointZ```用于描述在z轴上图层的位置，```zPosition```主要用于改变图层的显示顺序
  - ```- (void)layoutSublayersOfLayer:(CALayer *)layer;``` 当图层的**bounds**被修改或者图层的```-setNeedsLayout```被调用时，该函数会被调用，用于手动重新调整布局子图层的大小
 
@@ -46,7 +46,7 @@
     - ```shadowOpacity```：必须在0.0（不可见）和1.0（完全不透明）之间的浮点数，只要是一个大于默认值(0)的值，阴影就会显示在任意图层之下
     -  ```shadowColor```：控制着阴影的颜色，类型也是```CGColorRef```,默认黑色
     -  ```shadowOffset```：控制着阴影的方向和距离，类型是```CGSize```，```width```控制着阴影横向的位移，```height```控制着阴影纵向的位移,默认在iOS中是阴影向上，Mac上默认阴影向下
-    -  ```shadowRadius```：控制着阴影的模糊度，当值为0时，阴影和视图一样有一个非常确定的边界线
+    -  ```shadowRadius```：模糊半径(以点为单位)用于渲染图层的阴影,控制着阴影的模糊度，当值为0时，阴影和视图一样有一个非常确定的边界线。默认值3.0
 
 * 阴影裁剪
 
@@ -101,12 +101,87 @@
 
 ### CAShapeLayer
 
-* 是一个通过矢量图形而不是Bitmap来绘制的图层子类
+* 是一个通过矢量图形而不是Bitmap来绘制的图层子类,你指定诸如颜色和线宽等属性，用CGPath来定义想要绘制的图形，最后CAShapeLayer就自动渲染出来了。当然，你也可以用Core Graphics直接向原始的CALyer的内容中绘制一个路径，相比之下，使用CAShapeLayer有以下一些优点:
+    * **渲染快速**：CAShapeLayer使用了硬件加速，绘制同一图形会比用Core Graphics快很多。
+    * **高效使用内存**：一个CAShapeLayer不需要像普通CALayer一样创建一个寄宿图形，所以无论有多大，都不会占用太多的内存
+    * **不会被图层边界剪裁掉**：一个CAShapeLayer可以在边界之外绘制。你的图层路径不会像在使用Core Graphics的普通CALayer一样被剪裁掉
+    * **不会出现像素化**：当你把CAShapeLayer放大，或是用3D透视变换将其离相机更近时，它不像一个有寄宿图的普通图层一样变得像素化
 * 创建CGPath
 
 ### CATextLayer
 
+* 是CALayer的子类。它以图层的形式包含了UILabel几乎所有的绘制特性，并且额外提供了一些新的特性。重点是比UILabel的渲染快很多
+
+### CATransformLayer
+
+### 隐藏动画
+
+#### 事务
+
+* 动画执行的时间取决于当前事务的设置，动画类型取决于图层行为。
+* 事务实际上是Core Animation用来包含一系列属性动画集合的机制，任何用指定事务去改变可以做动画的图层属性都不会立刻发生变化，而是当事务一旦提交的时候开始用一个动画过渡到新值。
+* 任何可以做动画的图层属性都会被添加到栈顶的事务，通过+setAnimationDuration:方法设置当前事务的动画时间，或者通过+animationDuration方法来获取时长值（默认0.25秒）
+
+#### 图层行为
+
+* 把改变属性时CAlayer自动应用的动画称为行为
+* **隐式动画如何实现**：
+
+    * 当CALayer的属性被修改时，它会调用actionForKey：方法，传递属性的名称。
+    * 图层首先检测它是否有委托，并且是否实现CALayerDelegate协议指定的actionForLayer:forKey方法。如果有，直接调用并返回结果。
+    * 如果没有委托，或者委托没有实现actionForLayer:forKey方法，图层接着检查包含属性名称对应行为映射的actions字典
+    * 如果actions字典没有包含对应的属性，那么图层接着在它的style字典接着搜索属性名。
+    * 最后，如果在style里面也找不到对应的行为，那么图层将会直接调用定义了每个属性的标准行为的-defaultActionForKey:方法。
+
+```obj
+    if (存在代理 && 实现actionForLayer:forKey) {
+        return 结果；
+    } else if(actions中是否包含对应的属性) {
+        return 结果；
+    } else if(actions中没有包含对应的属性) {
+        return 结果；
+    } else if(style字段中包含对应的属性) {
+        return 结果；
+    } else {
+        return defaultActionForKey()
+    }
+```
+
+### 显式动画
+
+#### 属性动画
+
+* CABasicAnimation
+* CAKeyframeAnimation
+
+#### 动画组
+
+* CAAnimationGroup
+
+#### 过度
+
+* CATransition
+* 对图层树的动画
+    * 动画过程中不仅仅会涉及到图层的属性，而且是整个图层树的改变，需要手动在层级关系中添加或者移除图层。要确保
+
+#### 动画代理(CAAnimationDelegate)
+
+
+### 图层时间
+
+#### CAMediaTiming协议
+
+* 该协议定义了在一段动画内用来控制逝去时间的属性的集合
+
+#### 属性
+
+* repeatDuration：让动画重复一个指定的时间，而不是指定的次数，设置 INFINITY 可以让动画无限循环播放
+* autoreverses：在每次间隔交替循环过程中自动回放
+* repeatCount：设置 INFINITY 也可以让动画无限循环播放，但是不能同时指定 repeatDuration 和 repeatCount，可能会相互冲突
+* beginTime：指定动画开始之前的延迟时间。延迟指从动画添加到可见图层的那一刻开始测量，默认为0，表示动画会立刻执行
 * 
+
+
 
 ### 注意点
 
