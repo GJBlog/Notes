@@ -169,6 +169,10 @@
 
 ### 图层时间
 
+
+
+
+
 #### CAMediaTiming协议
 
 * 该协议定义了在一段动画内用来控制逝去时间的属性的集合
@@ -179,7 +183,42 @@
 * autoreverses：在每次间隔交替循环过程中自动回放
 * repeatCount：设置 INFINITY 也可以让动画无限循环播放，但是不能同时指定 repeatDuration 和 repeatCount，可能会相互冲突
 * beginTime：指定动画开始之前的延迟时间。延迟指从动画添加到可见图层的那一刻开始测量，默认为0，表示动画会立刻执行
-* 
+
+
+
+##  第十章 Easing(缓冲)
+
+### CAMedia TimingFunction
+
+#### CAAnimation
+
+```objc
+// 线性的计时函数且是CAAnimation的timingFunction属性为nil的默认函数
+kCAMediaTimingFunctionLinear 
+// 开始慢慢加速然后突然停止的过程
+kCAMediaTimingFunctionEaseIn
+// 开始全速，然后慢慢减速到停止的过程
+kCAMediaTimingFunctionEaseOut 
+// 开始慢慢加速然后再慢慢减速的过程(UIView中是默认，CAMediaTimingFunction中不是)
+kCAMediaTimingFunctionEaseInEaseOut
+// 跟kCAMediaTimingFunctionEaseInEaseOut类似，但是加速跟减速的过程都稍微有些慢
+kCAMediaTimingFunctionDefault
+// 创建CAMediaTimingFunction
+CAMediaTimingFunction *function = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+```
+#### UIView
+
+```objc
+// 默认值
+UIViewAnimationOptionCurveEaseInOut 
+UIViewAnimationOptionCurveEaseIn 
+UIViewAnimationOptionCurveEaseOut 
+UIViewAnimationOptionCurveLinear
+```
+
+##  第十一章 Timer-Based Animation(基于定时器的动画)
+
+
 
 
 
