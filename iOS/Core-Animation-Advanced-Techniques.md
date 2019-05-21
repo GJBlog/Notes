@@ -219,7 +219,16 @@ UIViewAnimationOptionCurveLinear
 ##  第十一章 Timer-Based Animation(基于定时器的动画)
 
 
+## 第十二章 性能调优
 
+* 处理绘图和动画的两种方式:CPU(所有工作都在软件层面) + GPU(所有工作都在硬件层面)
+* 重绘：每一帧用相同的像素填充多次
+* 动画过程阶段
+
+    * Layout：准备你的视图跟图层的层级关系，设置图层属性
+    * Display：图层的宿主图片被绘制的阶段，可能会涉及到```-drawRect:```，```-drawLayer:inContext```方法调用路径
+    * Prepare：Core Animation准备发送动画数据到渲染服务的阶段，同时也是Core Animation将要执行一些别的事务(比如：解码动画过程中将要显示的图片时间点)
+    * Commit：最后一个阶段，Core Animation打包所有图层和动画属性，通过IPC(内部处理通信)发送到渲染服务进行显示(到屏幕上)
 
 
 ### 注意点
