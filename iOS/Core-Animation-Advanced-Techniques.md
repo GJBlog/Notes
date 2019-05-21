@@ -180,7 +180,8 @@
 #### 属性
 
 * repeatDuration：让动画重复一个指定的时间，而不是指定的次数，设置 INFINITY 可以让动画无限循环播放
-* autoreverses：在每次间隔交替循环过程中自动回放
+* autoreverses：在每次间隔交
+* 替循环过程中自动回放
 * repeatCount：设置 INFINITY 也可以让动画无限循环播放，但是不能同时指定 repeatDuration 和 repeatCount，可能会相互冲突
 * beginTime：指定动画开始之前的延迟时间。延迟指从动画添加到可见图层的那一刻开始测量，默认为0，表示动画会立刻执行
 
