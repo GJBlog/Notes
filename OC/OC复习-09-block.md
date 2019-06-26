@@ -35,5 +35,25 @@ struct __main_block_desc_0 {
 #### 类型
 
 * __NSGlobalBlock__：没有访问auto变量
-* NSStackBlock：访问了auto变量(要想验证需要在MRC环境下)
-* NSMallocBlock：NSStackBlock调用copy
+* __NSStackBlock__：访问了auto变量(要想验证需要在MRC环境下)
+* __NSMallocBlock__：NSStackBlock调用copy
+
+#### 修改block中变量
+
+* 变量添加static
+
+```objc
+static int age = 10;
+```
+
+* 修改变量为全局变量
+
+```objc
+ int age = 10;
+```
+
+* 变量添加__block,不能修饰全局变量和静态变量
+
+```objc
+__block int age = 20;
+```
