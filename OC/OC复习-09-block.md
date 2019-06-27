@@ -57,3 +57,28 @@ static int age = 10;
 ```objc
 __block int age = 20;
 ```
+
+#### 解决循环引用
+
+在ARC中
+
+* 使用**__weak**
+
+```objc
+__weak GJPerson *person;
+```
+
+* 使用**__unsafe_unretained**
+
+```objc
+__unsafe_unretained GJPerson *person;
+```
+
+* 使用**__block**
+
+```objc
+__block GJPerson *person;
+```
+
+在MRC中
+
