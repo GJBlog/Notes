@@ -33,13 +33,28 @@ please your Majesty
 
 6、Unicode标量
 
+* Swift的String类型是基于Unicode标量建立的，Unicode 标量是对应字符或者修饰符的唯一的 21 位数字。
 * 表示方式：
 
 ```swift
 let test = "\u{XX}"
 ```
+7、扩展字符串分隔符
 
-7、字符串的修改和访问(Accessing and Modifying a string)
+* 通过使用扩展分隔符将字符串中特殊字符直接包含而非转移的效果
+* 使用```###```依然可以实现换行效果
+
+```swift
+// 字符串中的\n会被直接输出
+let str1 = #"Line1\nLine2"#
+// 字符串中的\n被转移输出
+let str2 = #"Line1\#nLine2"#
+let str3 = #“”“
+Here are three double
+"""#
+```
+
+8、字符串的修改和访问(Accessing and Modifying a string)
 
 * 字符串索引(String indices)
     - startIndex：访问String的第一个Character的索引
