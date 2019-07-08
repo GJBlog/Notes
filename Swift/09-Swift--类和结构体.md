@@ -9,6 +9,7 @@
     * 定义构造器用于设置初始值
     * 通过扩展以增加默认实现之外的功能
     * 遵循协议以提供某种标准功能
+
 * 类特有
     * 继承，允许一个类继承另一个的特征
     * 类型转换允许在运行时检查和解释一个类实例的类型
@@ -34,8 +35,33 @@ class VideoMode {
     var name: String?
 }
 ```
-## 7、注意点
+
+## 3、结构体和枚举是值类型
+
+* 赋值变量、常量或者函数时其值会被拷贝
+
+## 4、类是引用类型
+
+* 引用类型在被赋予到一个变量、常量或者被传递到一个函数时，其值不会被拷贝
+
+## 5、恒等运算符
+
+* 判定两个常量或者变量是否引用同一个类实例
+    * 相同(```===```)
+    * 不相同(```!==```)
+
+```swift
+if tenEighty === alsoTenEighty {
+    print("tenEighty and alsoTenEighty refer to the same VideoMode instance.")
+}
+// 打印 "tenEighty and alsoTenEighty refer to the same VideoMode instance."
+```
+
+## 6、注意点
 
 * 定义一个新的结构体或者类时，使用 UpperCamelCase 这种方式来命名类型（如这里的 SomeClass 和 SomeStructure）
 * 定义属性和方法（如 framerate 和 incrementCount）时，请使用 lowerCamelCase 这种方式来命名
+* 标准库定义的集合都对复制进行了优化以降低性能成本。新集合不会立即复制，而是跟原集合共享同一份内存，共享同样的元素。在集合的某个副本要被修改前，才会复制它的元素。而你在代码中看起来就像是立即发生了复制
+* 恒等运算符仅仅使用于类的实例之间
+* Swift 中引用了某个引用类型实例的常量或变量，与 C 语言中的指针类似
 
