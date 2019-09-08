@@ -105,7 +105,7 @@ someFunction(parameter1: 3)
 ```swift
 // 在变量类型名后面添加...来定义可变参数
 // 可变参数可以接受0个或多个值
-// 可变参数在函数体重变为此类型的数组
+// 可变参数在函数体中变为此类型的数组
 // 一个函数最多只能拥有一个可变参数
 func arithmeticMean(_ numbers: Double...) {
     for item in numbers {
@@ -133,7 +133,7 @@ swapTwoInts(&someInt, &anotherInt)
 * 函数类型
 
 ```swift
-// 函数都有种特定的函数类型,函数类型有函数的参数类型和返回值类型组成
+// 函数都有种特定的函数类型,函数类型由函数的参数类型和返回值类型组成
 // 函数类型：(Int, Int) -> Int
 func addTwoInts(_ a: Int, _ b: Int) -> Int {
     return a + b
