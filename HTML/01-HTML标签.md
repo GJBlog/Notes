@@ -198,3 +198,11 @@ div {
 }
 ```
 
+### CSS属性可用性
+
+> 由于浏览器、CSS版本问题，有些CSS属性是无法使用的
+>
+> 可以通过[https://caniuse.com]([https://caniuse.com)查询CSS属性的可用性
+
+
+

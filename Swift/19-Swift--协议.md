@@ -62,6 +62,10 @@ protocol SomeProtocol {
 > 协议中定义初始化器`init`，如果是非`final`类实现时必须加上`requeired`
 >
 > 如果从协议实现的初始化器，更好是重写了父类的指定初始化器，那么这个初始化器必须同时加上`required`、`override`
+>
+> 协议中定义的`init?` `init!`，可以使用`init`、`init?`、`init!`去实现
+>
+> 协议中定义的init，可以使用`init`、`init!`去实现
 
 ```swift
 protocol Drawable{
@@ -89,5 +93,51 @@ class Student: Person, Livable {
         super.init(age: age)
     }
 }
+```
+
+```swift
+protocol Livabel {
+  init()
+  init?(age: Int)
+  init!(no: Int)
+}
+class Person {
+  required init() {
+    // required init!() {}
+  }
+  required init?(age: Int) {
+    // required init!(age: Int) {}
+    // required init(age: Int) {}
+  }
+  required init!(no: Int) {}
+	  // required init?(no: Int) {}
+  	// required init(no: Int) {}
+}
+```
+
+### 协议继承
+
+> 协议可以继承一个或多个协议
+>
+> 多个被继承的协议间用逗号分隔
+
+```swift
+protocol Runnable {}
+
+protocol Livable: Runnable {}
+```
+
+### 协议组合
+
+> 协议组合中最多接受1个类类型
+
+```swift
+protocol Runnable {}
+
+protocol Livable {}
+
+class Person {}
+
+func fn1(obj: Livable & Runnable) {}
 ```
 
