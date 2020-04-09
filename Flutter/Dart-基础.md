@@ -463,6 +463,27 @@ print(identical(r1, r2));
 
 * 工厂构造函数
 
+> 使用 `factory` 关键字标识类的构造函数将会令该构造函数变为工厂构造函数，这将意味着使用该构造函数构造类的实例时并非总是会返回新的实例对象。例如，工厂构造函数可能会从缓存中返回一个实例，或者返回一个子类型的实例
+
+```dart
+class Logger {
+  final String name;
+  bool mute = false;
+  static final Map<String, Logger> _cache = <String, Logger>{};
+  factory Logger(String name) {
+    return _cache.putIfAbsent(name, () => Logger._inernal(name));
+  }
+  Logger._inernal(this.name);
+  void log(String msg) {
+    if (!mute) {
+      print(msg);
+    }
+  }
+}
+```
+
+
+
 
 
 ### 八、抽取单独类为一个模块
