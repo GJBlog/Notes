@@ -69,9 +69,16 @@ git check-ignore -v App.class(文件名)
 git config --global alias.XXX(别名) 'reset HEAD'(命令)
 ```
 
-**执行别名命令**
+##### 11、git clean
+
+> 用于从工作目录中删除所有没有被tracked过的文件
 
 ```shell
-git XXX
+# 仅仅用于显示那些文件会被删除，不会真正删除
+git clean -n
+# 删除当前目录下所有没有track过的文件，不会删除.gitignore文件里面的文件夹和文件
+git clean -f
+# 删除指针路径下的没有被track过的文件
+git clean -fd
 ```
 
