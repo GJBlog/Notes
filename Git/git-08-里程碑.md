@@ -2,8 +2,6 @@
 
 > 三种形式：轻量级里程碑、带注释的里程碑、带签名的里程碑
 
-#### Tag列表
-
 ```shell
 # 不带任何参数执行，为显示当前版本库的tag列表
 git tag
@@ -80,7 +78,8 @@ git push origin refs/tags/*
 #### 删除远端里程碑
 
 ```shell
-git push <remote_url>:<tagname>
+第一种：git push <remote_url>:<tagname>
+第二种：git push <remote_标识/(origin/github)> --delete tag <tagname>
 ```
 
 #### 引用表达式

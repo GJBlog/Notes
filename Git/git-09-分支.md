@@ -54,5 +54,35 @@ git checkout <branchname>
 git checkout -b <newbranch> <start-point>
 ```
 
+#### 推送分支到远端
+
+```shell
+git push origin <branchname>
+```
+
+
+
+#### 删除分支
+
+```shell
+#删除远端分支
+第一种：git push origin --delete <branchname>
+第二种：git push origin :<branchname>
+```
+
+#### 删除不存在对应远程分支的本地分支
+
+```shell
+#查看远端所有分支详情
+git remote show origin
+```
+
+* 凡是被标记为stale的分支名称即为已经在远端不存在的分支
+
+```shell
+第一种：git remote prune 
+第二种：git fetch -p,会在常规的fetch执行后，自动删除掉没有与远端分支对应的本地分支
+```
+
 
 

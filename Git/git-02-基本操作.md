@@ -289,6 +289,15 @@ git pull origin(远端主机名) dev(远端分支名):(dev)(本地分支名)
 git fetch origin(远端主机名) dev(远端分支名)
 ```
 
+34、查看某一个提交
+
+```shell
+第一种：git show commitId，显示里程碑及其提交
+第二种：git cat-file -p,显示里程碑及其提交,-p 是为了美观的输出(pretty)
+```
+
+
+
 **注意点**
 
 * 若文件仅仅在工作区修改，未提交到暂存区，则直接使用```git checkout -- 文件名```可以撤销修改。

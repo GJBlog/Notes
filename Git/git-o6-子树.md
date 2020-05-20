@@ -18,7 +18,8 @@ C：子仓库的远端分支
 ```shell
 # 同步远端子仓库
 git subtree pull --prefix=A B C [--squash]
-
+```
+```shell
 # 推送本地子仓库
 git subtree push --prefix=A B C [--squash]
 ```
@@ -26,12 +27,7 @@ git subtree push --prefix=A B C [--squash]
 ```shell
 # 拆分子仓库
 git subtree split -P LibraryC -b tempLibraryC
-
 ```
-
-
-
-
 
 #### 优点
 
