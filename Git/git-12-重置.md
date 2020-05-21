@@ -32,7 +32,7 @@ git reset[--soft|--mixed|--hard|--merge|--keep][-q][<commit>]
 
   1、只更改引用的指向，不改变暂存区和工作区
 
-* mixed：git reset --mixed
+* mixed：git reset --mixed(默认)
 
   1、更改引用的指向
 

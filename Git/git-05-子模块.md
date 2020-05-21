@@ -30,3 +30,13 @@ git submodule add 仓库地址
 * git clone --recurse -submodules git@github.com:GJBlog/GitMainProject.git
 
 如果你已经克隆了项目但忘记了 `--recurse-submodules`，那么可以运行 `git submodule update --init` 将 `git submodule init` 和 `git submodule update` 合并成一步。如果还要初始化、抓取并检出任何嵌套的子模块， 请使用简明的 `git submodule update --init --recursive`
+
+运行 `git submodule update --remote`，Git 将会进入子模块然后抓取并更新。
+
+####  子模块URL失效
+
+```shell
+# 将.git/config中的信息与.gitmodules中的信息重新同步
+git submodule sync --recursive
+```
+
