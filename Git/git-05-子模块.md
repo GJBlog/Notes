@@ -8,7 +8,7 @@
 git submodule add 仓库地址
 ```
 
-> 会自动添加子模块文件夹和.gitmodules文件吗，同时会在config中添加子模块信息
+> 会自动添加子模块文件夹和.gitmodules文件，同时会在config中添加子模块信息
 
 #### gitmodules
 
