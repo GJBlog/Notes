@@ -133,11 +133,10 @@ protocol Livable: Runnable {}
 
 ```swift
 protocol Runnable {}
-
 protocol Livable {}
-
 class Person {}
 
 func fn1(obj: Livable & Runnable) {}
+func fn2(obj: Person & Livable & Runnable) {}
 ```
 
