@@ -62,3 +62,77 @@ class Person {
 * 非逃逸闭包：闭包调用发生在函数结束前，闭包调用在函数作用域内
 * 逃逸闭包：闭包有可能在函数结束后调用，闭包调用逃离了函数的作用域，需要通过@escaping声明
 
+* 逃逸闭包不可以捕获inout参数
+
+### 内存访问冲突
+
+* 满足如下条件，说明重叠访问结构体的属性是安全的
+  * 只访问实例存储属性，不是计算属性或者类属性
+  * 结构体是局部变量，而非全局变量
+  * 结构体要么没有被闭包捕获，要么只被非逃逸闭包捕获
+
+### 指针
+
+#### swift中也有专门的指针类型，都被定义为Unsafe，常见的有以下4种类型
+
+* 第一种
+
+  ```swift
+UnsafePointer<Pointee> 类似于 const Pointee *
+  ```
+
+* 第二种
+
+```swift
+UnsafeMutablePointer<Pointee> 类似于 Pointee *
+```
+
+* 第三种
+
+```swift
+UnsafeRawPointer 类似于 const void *
+```
+
+* 第四种
+
+```swift
+UnsafeMutableRawPointer 类似于 void *
+```
+
+#### 获取指向某个变量的指针
+
+```swift
+var age = 10
+let ptr1 = withUnsafePointer(to: &age) { $0 }
+let ptr2 = withUnsafeMutablePointer(to: &age) { $0 }
+```
+
+### 获取指向堆空间实例的指针
+
+```swift
+class Person {}
+var person = Person()
+var ptr = withUnsafePointer(to: &person) { UnsafeRawPointer($0) }
+var heapPtr = UnsafeRawPointer(bitPattern: ptr.load(as: Uint.self))
+print(heapPtr!)
+```
+
+#### 创建指针
+
+#### 指针之间的转换
+
+```swift
+// 从RawPointer -> 泛型Pointer
+let ptr = UnsafeMutableRawPointer.allocate(byteCount: 16, alignment: 1)
+let newPtr = ptr.assumingMemoryBound(to: Int.self)
+```
+
+```swift
+// 强制转换
+// unsafeBitCast是忽略数据类型的强制转换，不会因为数据类型的变化而改变原来的内存数据(类似于c++ reinterpret_cast)
+let ptr = UnsafeMutableRawPointer.allocate(byteCount: 16, alignment: 1)
+print(unsafeBitCast(ptr, to: UnsafePointer<Int>.self).pointee)
+```
+
+
+
