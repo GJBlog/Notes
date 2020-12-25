@@ -134,5 +134,18 @@ let ptr = UnsafeMutableRawPointer.allocate(byteCount: 16, alignment: 1)
 print(unsafeBitCast(ptr, to: UnsafePointer<Int>.self).pointee)
 ```
 
+```swift
+class Person {}
+let person = Person()
+
+// 获取一个对象的堆空间地址(第一种方法)
+let ptr = unsafeBitCast(person, to: UnsafeRawPointer.self)
+// 获取一个对象的堆空间地址(第二种方法)
+let address = unsafeBitCast(person, to: UInt.self)
+let ptr = UnsafeRawPointer(bitPattern: address)
+```
+
+
+
 
 

@@ -1,4 +1,4 @@
-# 枚举(Enumeration)
+# 闭包(Closure)
 
 ## 1、定义
 

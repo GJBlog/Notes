@@ -19,6 +19,16 @@ SSL: Security Sockets Layer(安全套接字层协议)
 
 三、实际操作，探究证书中的内容
 
+* 查看证书签名信息
+
+```
+openssl pkcs12 -in xxx.p12 -out xxx.pem -nodes
+```
+
+
+
+
+
 
 
 四、代码签名
