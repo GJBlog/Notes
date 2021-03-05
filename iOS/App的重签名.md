@@ -11,7 +11,7 @@
 * Provisioning Profile：选择对应的描述文件
 * 其他选项都是可选
 
- ![A4F717BD-7E10-4CD9-A953-39729FB7136E](media/15207741083657/A4F717BD-7E10-4CD9-A953-39729FB7136E.png)
+![ios-app-signer](/Users/guo/Notes/iOS/images/ios-app-signer.png)
 
 
 ##### 2、sigh脚本
@@ -20,7 +20,7 @@
 
 ```bash
 brew install ruby
-```    
+```
 
 * 安装sigh
 
@@ -62,6 +62,6 @@ Please update your scripts to use `fastlane sigh resign` instead.
     ```bash
     [20:33:12]: Successfully signed /Users/XXX/Desktop/aaa.ipa!
     ```
- 
+
 
 
