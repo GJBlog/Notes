@@ -596,6 +596,13 @@ div::before {
 }
 ```
 
+##### 注意点
+
+* ::before和::after的content属性不能缺少
+* ::before和::after的display默认是inline，可以把::before和::after当做是span元素
+* 可以使用::before和::after来使用取代子元素
+* 由于::before和::after是CSS样式，所以可有可无的内容才使用::before和::after
+
 ### attr()
 
 * 在content中，还可以使用attr(属性名)来获得元素的属性值
