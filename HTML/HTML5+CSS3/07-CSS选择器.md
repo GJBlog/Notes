@@ -304,7 +304,7 @@ Class 值有one的元素
 * 元素状态伪类(UI element states pseudo-classes)
   * :enableed、:disabled、:checked
 
-* 结构伪类(structual pseudo-classes)
+*  结构伪类(structual pseudo-classes)
   * :nth-child()、:nth-last-child()、:nth-of-type()、:nth-last-of-type()
   * :first-child、:last-child、first-of-type、:last-of-type
   * :root、:only-child、:only-of-type、:empty
