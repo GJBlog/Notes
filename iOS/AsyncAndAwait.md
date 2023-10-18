@@ -29,6 +29,12 @@ extension UIImage {
 
 #### 任务和任务组
 
+#### Task modifier(修饰符)
+
+* task modifier 的任务上下文将和它所修饰的View的声明周期绑定；当被修饰的 View identifier 改变 (比如被其他 View 取代) 或者被从屏幕上移除时时，task 所关联的任务也将被取消；而 onAppear 和 Task.init 所创建的任务，则和 View 的生命周期无关
+
+
+
 
 
 #### OC =>Swift
