@@ -35,8 +35,6 @@ extension UIImage {
 
 
 
-
-
 #### OC =>Swift
 
 1、如果是包含completion关键字，则会自动将其转为async的形式以及原本的swift形式
@@ -60,7 +58,41 @@ class func checkPerform(_ name: String) async -> String
 class func handleResult(_ name: String, success: @escaping (String) -> Void) async -> Error
 ```
 
+#### 结构化并发
 
+非结构化并发带来的问题
+
+1、并不能保证函数中任务的执行一定会在函数调用的结束而结束
+
+2、派发回调破坏了并发的黑盒
+
+**定义**
+
+1、即使使用并发操作，也要保证控制流丼的单一入口和单一出口
+
+2、程序可以产生多个控制流来实现并发，但是所有的并发路径在出口时都应该处于完成(或取消)状态，并合并到一起
+
+**条件**
+
+1、需要依赖异步函数，异步函数又必须运行在某个任务的上下文中
+
+2、以任务为基本要素组织的
+
+##### 当前任务状态
+
+1、使用 withUnsafeCurrentTask：获取和检查当前任务，前提：在任意的异步函数中
+
+##### 任务层级-在任务树上创建叶子节点
+
+有两个方法
+
+**1、任务组(task group)**
+
+在某个异步函数中，通过withTaskGroup为当前任务添加一组结构化的并发子任务
+
+
+
+**2、异步绑定 (async let)**
 
 
 
