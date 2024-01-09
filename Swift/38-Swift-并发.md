@@ -201,5 +201,63 @@ Task.detached(priority:operation:)
 
 #### Actor(演员)
 
+引用类型
 
+用于安全的在并并发代码之间共享信息，类中引用类型和值类型的比较同样适用于actor，定义 actor
+
+```swift
+actor TemperatureLogger {
+    let label: String
+    var measurements: [Int]
+    private(set) var max: Int
+
+
+    init(label: String, measurement: Int) {
+        self.label = label
+        self.measurements = [measurement]
+        self.max = measurement
+    }
+}
+```
+
+特点：具有外部可以访问属性，但是只有内部可以修改属性
+
+#### 可发送协议
+
+声明符合**Sendable**协议，将类型标记为可发送的，该协议没有任何代码要求，一般来说，一个类型有三种可发送的方式
+
+* 值类型,其可变状态由其他可发送数据组成，例如，具有可发送的存储属性的结构体或者具有可发送的关联值的枚举
+* 类型没有任何可变状态，例如只有只读属性的结构体或者类
+* 类型具有确保其可变状态安全的代码，例如标记**@MainActor**，或者在特定线程或队列上序列化对其属性的访问的类
+
+总是可发送的类型，例如结构体只有可发送的属性，枚举只具有可发送的关联值
+
+```swift
+struct TemperatureReading: Sendable {
+    var measurement: Int
+}
+
+extension TemperatureLogger {
+    func addReading(from reading: TemperatureReading) {
+        measurements.append(reading.measurement)
+    }
+}
+```
+
+如果需要显式将类型标记为**不可发送**，覆盖对Sendable协议的隐式一致性，使用扩展
+
+```swift
+struct FileDescriptor {
+    let rawValue: CInt
+}
+
+@available(*, unavailable)
+extension FileDescriptor: Sendable {}
+```
+
+
+
+#### 参考资料
+
+[官方文档](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Calling-Asynchronous-Functions-in-Parallel)
 
