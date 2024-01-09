@@ -11,7 +11,7 @@
 * Provisioning Profile：选择对应的描述文件
 * 其他选项都是可选
 
-![ios-app-signer](/Users/guo/Notes/iOS/images/ios-app-signer.png)
+![ios-app-signer](https://cdn.jsdelivr.net/gh/GJBlog/Notes/iOS/images/ios-app-signer.png)
 
 
 ##### 2、sigh脚本
@@ -33,8 +33,8 @@ sudo gem install sigh
 
     ```bash
     [WARNING] You are calling sigh directly. Usage of the tool name without the `fastlane` prefix is deprecated in fastlane 2.0
-Please update your scripts to use `fastlane sigh resign` instead.
-[21:27:40]: Path to ipa file:
+    Please update your scripts to use `fastlane sigh resign` instead.
+    [21:27:40]: Path to ipa file:
     ```
     
     * 继续输入相关.ipa文件所在path路径，或者直接将文件拖入该行中，回车

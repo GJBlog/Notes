@@ -4,7 +4,7 @@
 
 1、现象
 
-![image-20221114003952161](/Users/guojie/Notes/Mac/images/终端提示env.png)
+![](https://cdn.jsdelivr.net/gh/GJBlog/Notes/Mac/images/%E7%BB%88%E7%AB%AF%E6%8F%90%E7%A4%BAenv.png)
 
 2、解决方案
 
