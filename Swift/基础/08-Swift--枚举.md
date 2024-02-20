@@ -113,7 +113,7 @@ let possiblePlanet = Planet(rawValue: 7)
 ### 递归枚举
 
 * 也是一种枚举类型，它有一个或多个枚举成员使用该枚举类型的实例作为关联值
-* 使用递归枚举时，编译器会插入一个间接层。你可以在枚举成员前加上 indirect 来表示该成员可递归
+* 使用递归枚举时，编译器会插入一个间接层。你可以在枚举成员前加上 **indirect** 来表示该成员可递归
 
 ```swift
 func evaluate(_ expression: ArithmeticExpression) -> Int {
