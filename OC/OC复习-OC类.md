@@ -111,7 +111,23 @@ class_isMetaClass(objMetaClass)
     }
     ```
     
-    
+
+不借助第三方变量如何交换两个变量的值
+
+```objective-c
+int a = 10;
+int b = 11;
+// 借助加减法运算
+a = b - a;
+b = b - a;
+a = b + a;
+// 借助位运算符
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+```
+
+
 
 ### 面试题
 
