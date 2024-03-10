@@ -1,6 +1,6 @@
-## C 语言
+# C 语言
 
-#### 语法注意点
+## 语法注意点
 
 ```c
 if (10 > 6) 
@@ -82,5 +82,186 @@ int main()
   #include "绝对路径"
  	return 0; 
 }
+```
+
+long：扩充int类型的取值范围，属于类型说明符，用于修饰 int 
+
+long long int 等价于 long long，8个字节
+
+long int 等价于 long，8个字节
+
+short int 等价于 short 2个字节
+
+signed == signed int，最高位要当做符号位，取值范围：-2的31次方 ~ 2的31次方 - 1
+
+unsigned == unsigned int，最高位不要当做符号位，取值范围：0 ~ 2的32次方 - 1
+
+#### 按位异或 ^
+
+1、相同数值进行异或，结果肯定是0，比如 9 ^ 9
+
+2、可以交换 9 ^ 5 ^ 6 = 9 ^ 6 ^ 5
+
+3、任何数值跟0进行异或，结果还是原来的数值
+
+4、a ^ b ^ a = a ^ a ^ b = 0 ^ b = b
+
+5、应用
+
+```c
+a = 10, b = 11;
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+a = 11, b = 10;
+```
+
+#### 左移
+
+**a << n**：将a的**所有二进制位**向左移动1位，等价于 a * 2的n次方
+
+#### 右移
+
+a >> n：将a的所有二进制位向右移动1为，等价于a / 2 的n次方
+
+最高位符号位不动，中间空缺的位置使用符号位的值来补齐
+
+ ####  数组
+
+* 如果想在定义数组的同时进行初始化，数组元素个数必须是常量，或者不写
+
+```c
+int count = 5;
+❌
+int ages[count] = {10, 11, 12};
+✅
+int ages[count];
+```
+
+* 数组作为函数参数，可以省略元素个数
+
+```c
+void change(int args[]) 
+{
+	......  
+}
+```
+
+* 数组作为函数参数，传递是整个数组的地址，修改函数形参数组元素的值，会影响到外面的实参数组
+
+#### 字符串
+
+初始化形式
+
+```c
+✅
+char name1[8] = "it";
+char name2[8] = {'i', 't', '\0'};
+char name3[8] = {'i', 't', 0};
+char name4[8] = {'i', 't'};
+// 不算是一个字符串(只能说是一个字符数组)
+❌
+char name5[] = {'i', 't'};
+```
+
+#### strlen 函数
+
+* 计算字符串的长度
+* 计算的是字符数，并不是字数
+* 计算的字符不包括\0
+* 从某个地址开始数字符的个数，直到遇到\0为止
+
+```c
+#include <string.h>
+char name[] = "itcast";
+char name2[] = {'0', '6'};
+int size = strlen(name2);
+printf("%d\n", size);
+// 输出：8,因为一直输出到name最后的\0为止
+```
+
+#### 指针
+
+// 指向函数的指针
+
+```c
+void test() {}
+// 左侧void：指针p指向的函数没有返回值
+// 右侧()：指针p指向的函数没有形参
+// 定义指向函数的指针
+void (*p)() = test;
+// 直接调用
+test();
+// 指针间接调用1
+p();
+// 指针间接调用2
+(*p)();
+```
+
+#### 结构体 
+
+* 这种赋值操作只能在结构体初始化时进行
+
+```c
+// 定义结构体类型
+struct Person 
+{		// 3个变量称为结构体的成员或者属性
+		int age;
+    double height;
+    char *name;  
+};
+// 定义Person结构体变量p，并赋值
+// ✅
+struct Person p = {20, 1.55, "rose"};
+struct Person p2 = {.height = 1.88, .name = "jim", .age = 30};
+struct Person p3;
+// ❌
+p3 = {30, 1.55, "jake"};
+```
+
+* 分配存储空间时，是按顺序一次分配内部的所有成员
+* 补齐算法(对齐算法)
+
+结构体所占用的存储空间必须是最大成员字节数的倍数
+
+```c
+Struct Student 
+{
+  int  age; // 4个字节
+  char *names; // 8个字节
+};
+struct Student stu;
+sizeof(stu); // 16个字节
+```
+
+* 定义结构体变量的三种方式
+
+1、先定义类型，再定义变量(分开定义)
+
+```c 
+struct Student
+{
+	int age;
+};
+struct Studrnt stu;
+```
+
+2、定义类型的同时定义变量
+
+```c
+struct Studrnt
+{
+  int age;
+} stu;
+struct Studrnt stu2;
+```
+
+3、定义类型的同时定义变量(省略了类型名称)
+
+```c
+struct 
+{
+  int age
+} stu;
 ```
 
