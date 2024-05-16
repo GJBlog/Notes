@@ -47,3 +47,38 @@ import 模块1, 模块2, ...
   * 当直接执行该模块时，值为：```__main__```
   * 当被其他模块导入时：值为：模块名
 
+#### `__name__` 使用
+
+用于：在自定义模块文件中，编写**测试**代码，当该模块被其他模块引用时，如果没有**测试**代码不在`if __name__ == '__main__':`中，那么被引入时会被自动执行，但是当放置到`if __name__ == '__main__':`中则只会在当前模块中执行时才会运行
+
+```python
+if __name__ == '__main__':
+    test1(20, 10)
+```
+
+#### `__all__`使用
+
+用于在自定义模块中，被`__all__`指定的函数名，在其他模块中通过`import *`导入该模块时，只会导入在`__all__`列表中指定的函数，未指定的则无法使用
+
+```python
+# my_module1.py 文件
+def test1(a, b):
+    print(a + b)
+
+def test2(a, b):
+    print(a * b)
+
+__all__ = ["test1", "test2"]
+```
+
+#### 注意事项
+
+不同模块都通过 import XX方式导入相同的xx名称，那么最后通过import XX 导入的部分会覆盖掉之前导入的部分
+
+```python
+from my_module1 import test1
+from my_module2 import test1
+
+test1(10, 20) # test1实际执行的是来自my_module2中的test1函数实现
+```
+
