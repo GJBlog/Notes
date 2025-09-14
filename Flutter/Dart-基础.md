@@ -1,4 +1,4 @@
-## Dart基础知识
+# Dart基础知识
 
 ### Dart
 
@@ -676,6 +676,38 @@ void work() {
 * 如果子类继承抽象类，就必须得实现里面的抽象方法
 * 如果把抽象类当做接口实现的话，就必须得实现抽象类里面定义的所有属性和方法
 * 抽象类不能被实例化，只有继承它的子类可以
+
+```dart
+// 抽象方法
+abstract class Shape {
+  getArea();
+}
+
+class Circle extends Shape {
+  double r;
+
+  Circle(this.r);
+
+  @override
+  getArea() {
+    return r * r * 3.14;   
+  }
+}
+
+class Reactangle extends Shape {
+  double w;
+  double h;
+
+  Reactangle(this.w, this.h);
+
+  @override
+  getArea() {
+    return w * h;
+  }
+}
+```
+
+
 
 ### 16、接口
 

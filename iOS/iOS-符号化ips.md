@@ -23,6 +23,8 @@ find /Applications/Xcode.app -name symbolicatecrash
 
 ```shell
 find /Applications/Xcode.app -name CrashSymbolicator -type f
+具体位置
+脚本名字为CrashSymbolicator.py,可以在目录/Applications/Xcode.app/Contents/SharedFrameworks/CoreSymbolicationDT.framework/Versions/A/Resources下获取脚本
 ```
 
 ##### 2、使用方式
